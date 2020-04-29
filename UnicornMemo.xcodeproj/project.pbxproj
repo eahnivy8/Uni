@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E0FC329245924920012A166 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FC328245924920012A166 /* DetailViewController.swift */; };
+		1E0FC32B2459255C0012A166 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FC32A2459255C0012A166 /* ComposeViewController.swift */; };
 		1E4CBF1B24569F3D00A12D73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF1A24569F3D00A12D73 /* AppDelegate.swift */; };
 		1E4CBF1D24569F3D00A12D73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF1C24569F3D00A12D73 /* SceneDelegate.swift */; };
 		1E4CBF1F24569F3D00A12D73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF1E24569F3D00A12D73 /* ViewController.swift */; };
@@ -14,9 +16,12 @@
 		1E4CBF2524569F3D00A12D73 /* UnicornMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF2324569F3D00A12D73 /* UnicornMemo.xcdatamodeld */; };
 		1E4CBF2724569F3E00A12D73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E4CBF2624569F3E00A12D73 /* Assets.xcassets */; };
 		1E4CBF2A24569F3E00A12D73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E4CBF2824569F3E00A12D73 /* LaunchScreen.storyboard */; };
+		1E4CBF342456A29800A12D73 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF332456A29800A12D73 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E0FC328245924920012A166 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1E0FC32A2459255C0012A166 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		1E4CBF1724569F3D00A12D73 /* UnicornMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnicornMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4CBF1A24569F3D00A12D73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E4CBF1C24569F3D00A12D73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		1E4CBF2624569F3E00A12D73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E4CBF2924569F3E00A12D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E4CBF2B24569F3E00A12D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E4CBF332456A29800A12D73 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +67,14 @@
 				1E4CBF1A24569F3D00A12D73 /* AppDelegate.swift */,
 				1E4CBF1C24569F3D00A12D73 /* SceneDelegate.swift */,
 				1E4CBF1E24569F3D00A12D73 /* ViewController.swift */,
+				1E0FC328245924920012A166 /* DetailViewController.swift */,
 				1E4CBF2024569F3D00A12D73 /* Main.storyboard */,
 				1E4CBF2624569F3E00A12D73 /* Assets.xcassets */,
 				1E4CBF2824569F3E00A12D73 /* LaunchScreen.storyboard */,
 				1E4CBF2B24569F3E00A12D73 /* Info.plist */,
 				1E4CBF2324569F3D00A12D73 /* UnicornMemo.xcdatamodeld */,
+				1E4CBF332456A29800A12D73 /* CoreDataManager.swift */,
+				1E0FC32A2459255C0012A166 /* ComposeViewController.swift */,
 			);
 			path = UnicornMemo;
 			sourceTree = "<group>";
@@ -144,7 +153,10 @@
 				1E4CBF2524569F3D00A12D73 /* UnicornMemo.xcdatamodeld in Sources */,
 				1E4CBF1F24569F3D00A12D73 /* ViewController.swift in Sources */,
 				1E4CBF1B24569F3D00A12D73 /* AppDelegate.swift in Sources */,
+				1E0FC32B2459255C0012A166 /* ComposeViewController.swift in Sources */,
+				1E4CBF342456A29800A12D73 /* CoreDataManager.swift in Sources */,
 				1E4CBF1D24569F3D00A12D73 /* SceneDelegate.swift in Sources */,
+				1E0FC329245924920012A166 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,12 +301,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = 3M62UV9XR3;
 				INFOPLIST_FILE = UnicornMemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangwookahn.UnicornMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -307,12 +322,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = 3M62UV9XR3;
 				INFOPLIST_FILE = UnicornMemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangwookahn.UnicornMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
