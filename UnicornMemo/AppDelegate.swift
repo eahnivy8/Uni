@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 coloredAppearance.configureWithOpaqueBackground()
                 //let colorLiteral = #colorLiteral(red: 0.8302105069, green: 0.964060843, blue: 1, alpha: 1)
             coloredAppearance.backgroundColor = .clear
-                coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.systemBlue]
-                coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.systemBlue]
+                coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.systemPurple]
+                coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.systemPurple]
                 UINavigationBar.appearance().standardAppearance = coloredAppearance
                 UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
             } else {
@@ -29,11 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CoreDataManager.shared.setup(modelName: "UnicornMemo")
             CoreDataManager.shared.fetchMemo()
             //initialize Firebase
-            //FirebaseApp.configure()
-            // initialize AdMob
-            //GADMobileAds.sharedInstance().start(completionHandler: nil)
-            //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers
-            //GADMobileAds.configure(withApplicationID: "ca-app-pub-8233515273063706~7933126187")
+            FirebaseApp.configure()
+            //initialize AdMob
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
             return true
         }
 

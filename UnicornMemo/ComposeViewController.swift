@@ -50,14 +50,14 @@ class ComposeViewController: UIViewController {
         self.textView.becomeFirstResponder()
         let saveButton = UIButton(type: UIButton.ButtonType.custom)
         saveButton.setImage(UIImage(named: "save.png"), for: .normal)
-        saveButton.imageEdgeInsets = .init(top: 32, left: 32, bottom: 32, right: 32)
+        saveButton.imageEdgeInsets = .init(top: 48, left: 48, bottom: 48, right: 48)
         saveButton.addTarget(self, action: #selector(saveMemo), for: .touchUpInside)
         let rightBarButton = UIBarButtonItem(customView: saveButton)
         self.navigationItem.rightBarButtonItems = [rightBarButton]
         
         let cancelButton = UIButton(type: .custom)
         cancelButton.setImage(UIImage(named: "cancel.png"), for: .normal)
-        cancelButton.imageEdgeInsets = .init(top: 32, left: 32, bottom: 32, right: 32)
+        cancelButton.imageEdgeInsets = .init(top: 48, left: 48, bottom: 48, right: 48)
         cancelButton.addTarget(self, action: #selector(cancelMemo), for: .touchUpInside)
         let leftBarButton = UIBarButtonItem(customView: cancelButton)
         self.navigationItem.leftBarButtonItems = [leftBarButton]

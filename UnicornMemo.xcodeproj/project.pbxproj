@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,12 +17,14 @@
 		1E4CBF2724569F3E00A12D73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E4CBF2624569F3E00A12D73 /* Assets.xcassets */; };
 		1E4CBF2A24569F3E00A12D73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E4CBF2824569F3E00A12D73 /* LaunchScreen.storyboard */; };
 		1E4CBF342456A29800A12D73 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CBF332456A29800A12D73 /* CoreDataManager.swift */; };
+		1E7F89B7247796180096CCE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E7F89B6247796180096CCE3 /* GoogleService-Info.plist */; };
+		64FB18CA25436C03C19C2D7F /* Pods_UnicornMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5E51B8C1A7C4DB3533DC6B /* Pods_UnicornMemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E0FC328245924920012A166 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1E0FC32A2459255C0012A166 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
-		1E4CBF1724569F3D00A12D73 /* UnicornMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnicornMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E4CBF1724569F3D00A12D73 /* Unicorn Notepads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unicorn Notepads.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4CBF1A24569F3D00A12D73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E4CBF1C24569F3D00A12D73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1E4CBF1E24569F3D00A12D73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +34,10 @@
 		1E4CBF2924569F3E00A12D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E4CBF2B24569F3E00A12D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E4CBF332456A29800A12D73 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1E7F89B6247796180096CCE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50D835F80953C6262ACFA228 /* Pods-UnicornMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnicornMemo.release.xcconfig"; path = "Target Support Files/Pods-UnicornMemo/Pods-UnicornMemo.release.xcconfig"; sourceTree = "<group>"; };
+		8B5E51B8C1A7C4DB3533DC6B /* Pods_UnicornMemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnicornMemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B8A22BEBEA656BB7064C995 /* Pods-UnicornMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnicornMemo.debug.xcconfig"; path = "Target Support Files/Pods-UnicornMemo/Pods-UnicornMemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FB18CA25436C03C19C2D7F /* Pods_UnicornMemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,13 +57,15 @@
 			children = (
 				1E4CBF1924569F3D00A12D73 /* UnicornMemo */,
 				1E4CBF1824569F3D00A12D73 /* Products */,
+				A63A5D7B5D4D79D0476D1A10 /* Pods */,
+				9E8B15AC632A44B6E63BD123 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		1E4CBF1824569F3D00A12D73 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1E4CBF1724569F3D00A12D73 /* UnicornMemo.app */,
+				1E4CBF1724569F3D00A12D73 /* Unicorn Notepads.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,11 +81,29 @@
 				1E4CBF2624569F3E00A12D73 /* Assets.xcassets */,
 				1E4CBF2824569F3E00A12D73 /* LaunchScreen.storyboard */,
 				1E4CBF2B24569F3E00A12D73 /* Info.plist */,
+				1E7F89B6247796180096CCE3 /* GoogleService-Info.plist */,
 				1E4CBF2324569F3D00A12D73 /* UnicornMemo.xcdatamodeld */,
 				1E4CBF332456A29800A12D73 /* CoreDataManager.swift */,
 				1E0FC32A2459255C0012A166 /* ComposeViewController.swift */,
 			);
 			path = UnicornMemo;
+			sourceTree = "<group>";
+		};
+		9E8B15AC632A44B6E63BD123 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B5E51B8C1A7C4DB3533DC6B /* Pods_UnicornMemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A63A5D7B5D4D79D0476D1A10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B8A22BEBEA656BB7064C995 /* Pods-UnicornMemo.debug.xcconfig */,
+				50D835F80953C6262ACFA228 /* Pods-UnicornMemo.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E4CBF2E24569F3E00A12D73 /* Build configuration list for PBXNativeTarget "UnicornMemo" */;
 			buildPhases = (
+				D7871C4CA5AA64945804B369 /* [CP] Check Pods Manifest.lock */,
 				1E4CBF1324569F3D00A12D73 /* Sources */,
 				1E4CBF1424569F3D00A12D73 /* Frameworks */,
 				1E4CBF1524569F3D00A12D73 /* Resources */,
+				58473F4CB38229FE3E5C13B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,7 +125,7 @@
 			);
 			name = UnicornMemo;
 			productName = UnicornMemo;
-			productReference = 1E4CBF1724569F3D00A12D73 /* UnicornMemo.app */;
+			productReference = 1E4CBF1724569F3D00A12D73 /* Unicorn Notepads.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,11 +168,54 @@
 			files = (
 				1E4CBF2A24569F3E00A12D73 /* LaunchScreen.storyboard in Resources */,
 				1E4CBF2724569F3E00A12D73 /* Assets.xcassets in Resources */,
+				1E7F89B7247796180096CCE3 /* GoogleService-Info.plist in Resources */,
 				1E4CBF2224569F3D00A12D73 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58473F4CB38229FE3E5C13B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnicornMemo/Pods-UnicornMemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnicornMemo/Pods-UnicornMemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnicornMemo/Pods-UnicornMemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7871C4CA5AA64945804B369 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UnicornMemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E4CBF1324569F3D00A12D73 /* Sources */ = {
@@ -298,10 +370,11 @@
 		};
 		1E4CBF2F24569F3E00A12D73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B8A22BEBEA656BB7064C995 /* Pods-UnicornMemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = 3M62UV9XR3;
 				INFOPLIST_FILE = UnicornMemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -309,9 +382,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangwookahn.UnicornMemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Unicorn Notepads";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -319,10 +392,11 @@
 		};
 		1E4CBF3024569F3E00A12D73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50D835F80953C6262ACFA228 /* Pods-UnicornMemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = 3M62UV9XR3;
 				INFOPLIST_FILE = UnicornMemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -330,9 +404,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangwookahn.UnicornMemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Unicorn Notepads";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

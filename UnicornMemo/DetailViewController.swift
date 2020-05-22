@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class DetailViewController: UIViewController {
     var memo: MemoEntity?
+    @IBOutlet weak var bannnerView: GADBannerView!
     @IBOutlet weak var listTableView: UITableView!
     
     @IBOutlet weak var toolBar: UIToolbar!
@@ -37,9 +39,10 @@ class DetailViewController: UIViewController {
         //            self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func shareMemo(_ sender: Any) {
+    @IBAction func shareMemo(_ sender: UIBarButtonItem) {
         guard let memo = memo?.content else { return }
         let vc = UIActivityViewController(activityItems: [memo], applicationActivities: nil)
+        vc.popoverPresentationController?.barButtonItem = sender
         present(vc, animated: true, completion: nil)
     }
     //share function added
@@ -55,7 +58,9 @@ class DetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bannnerView.adUnitID = "ca-app-pub-6799581804219252/9516596164"
+        bannnerView.rootViewController = self
+        bannnerView.load(GADRequest())
         toolBar.barTintColor = .cyan
         toolBar.alpha = 0.7
         listTableView.backgroundColor = .clear

@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import GoogleMobileAds
 
 class ViewController: UIViewController {
     lazy var dateFormatter: DateFormatter = {
@@ -18,7 +19,8 @@ class ViewController: UIViewController {
         return formatter
     }()
     
-    //@IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     @IBOutlet weak var listTableView: UITableView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,10 +57,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         listTableView.backgroundColor = .clear
-        //            CoreDataManager.shared.fetchMemo()
-        //            bannerView.adUnitID = "ca-app-pub-8233515273063706/8853689139"
-        //            bannerView.rootViewController = self
-        //            bannerView.load(GADRequest())
+        CoreDataManager.shared.fetchMemo()
+        bannerView.adUnitID = "ca-app-pub-6799581804219252/8159567870"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
         
         NotificationCenter.default.addObserver(forName: .memoDidInsert, object: nil, queue: .main) { [weak self] _ in
             let index = IndexPath(row: 0, section: 0)
