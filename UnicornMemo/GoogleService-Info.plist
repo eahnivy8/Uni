@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1081416338417-433l3dbrgscbej7ikvh38q27nq9r1cpn.apps.googleusercontent.com</string>
+	<string>601850626643-gogsfmmknrkc5ntvdlouhb7aqttbn808.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1081416338417-433l3dbrgscbej7ikvh38q27nq9r1cpn</string>
+	<string>com.googleusercontent.apps.601850626643-gogsfmmknrkc5ntvdlouhb7aqttbn808</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDmB_lFsML6a_k1e9X-NUyBB9uN565qZlQ</string>
+	<string>AIzaSyCZ3fYIYFGu1vkaryiGQpIQ5m4nNFLxLKI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1081416338417</string>
+	<string>601850626643</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.sangwookahn.UnicornMemo</string>
 	<key>PROJECT_ID</key>
-	<string>unicorn-memo</string>
+	<string>unicorn-memo-project</string>
 	<key>STORAGE_BUCKET</key>
-	<string>unicorn-memo.appspot.com</string>
+	<string>unicorn-memo-project.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1081416338417:ios:f4f6de59e680fc8e141250</string>
+	<string>1:601850626643:ios:a5858ed9fe00455abcfca6</string>
 	<key>DATABASE_URL</key>
-	<string>https://unicorn-memo.firebaseio.com</string>
+	<string>https://unicorn-memo-project.firebaseio.com</string>
 </dict>
 </plist>

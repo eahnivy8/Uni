@@ -33,7 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //initialize Firebase
             FirebaseApp.configure()
             //initialize AdMob
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
+//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
+//        ["acc01697ee9ac4021ee952ed642c1c90"] // Sample device ID
             return true
         }
 

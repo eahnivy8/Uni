@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         
         listTableView.backgroundColor = .clear
         CoreDataManager.shared.fetchMemo()
-        bannerView.adUnitID = "ca-app-pub-6799581804219252/8159567870"
+        bannerView.adUnitID = "ca-app-pub-8233515273063706/1070720818"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         

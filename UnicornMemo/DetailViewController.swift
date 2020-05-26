@@ -58,7 +58,7 @@ class DetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannnerView.adUnitID = "ca-app-pub-6799581804219252/9516596164"
+        bannnerView.adUnitID = "ca-app-pub-8233515273063706/8283189944"
         bannnerView.rootViewController = self
         bannnerView.load(GADRequest())
         toolBar.barTintColor = .cyan
