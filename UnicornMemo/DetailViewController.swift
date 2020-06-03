@@ -7,11 +7,13 @@
 //
 
 import UIKit
-import GoogleMobileAds
+import FBAudienceNetwork
 
-class DetailViewController: UIViewController {
+
+class DetailViewController: UIViewController, FBAdViewDelegate {
     var memo: MemoEntity?
-    @IBOutlet weak var bannnerView: GADBannerView!
+    var bannerAdView: FBAdView!
+    //@IBOutlet weak var bannnerView: GADBannerView!
     @IBOutlet weak var listTableView: UITableView!
     
     @IBOutlet weak var toolBar: UIToolbar!
@@ -58,9 +60,15 @@ class DetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannnerView.adUnitID = "ca-app-pub-8233515273063706/8283189944"
-        bannnerView.rootViewController = self
-        bannnerView.load(GADRequest())
+    bannerAdView = FBAdView(placementID: "177353010371214_177911173648731", adSize: kFBAdSizeHeight90Banner, rootViewController: self)
+    bannerAdView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 190 , width: UIScreen.main.bounds.size.width, height: 90.0)
+    bannerAdView.delegate = self
+    bannerAdView.isHidden = false
+    self.view.addSubview(bannerAdView)
+    bannerAdView.loadAd()
+//        bannnerView.adUnitID = "ca-app-pub-8233515273063706/8283189944"
+//        bannnerView.rootViewController = self
+//        bannnerView.load(GADRequest())
         toolBar.barTintColor = .cyan
         toolBar.alpha = 0.7
         listTableView.backgroundColor = .clear

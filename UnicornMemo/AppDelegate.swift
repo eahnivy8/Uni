@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Firebase
-import GoogleMobileAds
+import FBAudienceNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,13 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             CoreDataManager.shared.setup(modelName: "UnicornMemo")
             CoreDataManager.shared.fetchMemo()
+         //FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
             //initialize Firebase
-            FirebaseApp.configure()
+            //FirebaseApp.configure()
             //initialize AdMob
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-
-//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
-//        ["acc01697ee9ac4021ee952ed642c1c90"] // Sample device ID
             return true
         }
 

@@ -113,29 +113,19 @@
                                 <rect key="frame" x="0.0" y="747" width="375" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GG0-3T-rd6" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="705" width="375" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="g32-xl-PUR"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1um-1T-9T6"/>
                             <constraint firstItem="8Bx-8E-E5Q" firstAttribute="top" secondItem="Y8J-fW-3lV" secondAttribute="bottom" constant="34" id="3Rg-3W-5T9"/>
-                            <constraint firstItem="GG0-3T-rd6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4N0-3q-Web"/>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="baseline" secondItem="g74-xu-ZPb" secondAttribute="firstBaseline" constant="144" id="Jsq-fq-IQf"/>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="width" secondItem="8Bx-8E-E5Q" secondAttribute="height" multiplier="125:30" constant="103.66" id="M36-eV-QOf"/>
                             <constraint firstItem="eXg-Nd-vT7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUD-Yk-aCg"/>
                             <constraint firstAttribute="bottom" secondItem="eXg-Nd-vT7" secondAttribute="bottom" id="PBh-UN-3Qm"/>
                             <constraint firstItem="8Bx-8E-E5Q" firstAttribute="width" secondItem="Y8J-fW-3lV" secondAttribute="width" id="Q1c-bt-Kep"/>
-                            <constraint firstItem="GG0-3T-rd6" firstAttribute="baseline" secondItem="8Bx-8E-E5Q" secondAttribute="firstBaseline" constant="8" symbolType="layoutAnchor" id="TZG-6b-9jV"/>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hhz-73-heX"/>
                             <constraint firstItem="g74-xu-ZPb" firstAttribute="centerX" secondItem="eXg-Nd-vT7" secondAttribute="centerX" id="i1O-44-aFK"/>
                             <constraint firstItem="eXg-Nd-vT7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nHl-fc-ymH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GG0-3T-rd6" secondAttribute="trailing" id="qEL-0f-LRa"/>
                             <constraint firstAttribute="bottom" secondItem="8Bx-8E-E5Q" secondAttribute="bottom" id="qWM-ro-fcM"/>
                             <constraint firstItem="eXg-Nd-vT7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tFB-Jl-msF"/>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wsr-Q9-tMO"/>
@@ -145,7 +135,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Memo List" id="TcP-Pk-Ld0"/>
                     <connections>
-                        <outlet property="bannerView" destination="GG0-3T-rd6" id="PBk-PH-qer"/>
                         <outlet property="listTableView" destination="Y8J-fW-3lV" id="jnk-NJ-6Sm"/>
                     </connections>
                 </viewController>
@@ -213,13 +202,6 @@
                                     <outlet property="delegate" destination="UqT-n5-VeJ" id="SLl-Em-4cd"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Y9-6B-xKB" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="679" width="375" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="A3N-ZJ-UC4"/>
-                                </constraints>
-                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jpa-Pu-moa">
                                 <rect key="frame" x="0.0" y="729" width="375" height="49"/>
                                 <items>
@@ -249,13 +231,10 @@
                             <constraint firstItem="ejt-fo-rI2" firstAttribute="top" secondItem="FQi-Pe-68Q" secondAttribute="top" id="FVa-Ac-30m"/>
                             <constraint firstItem="nk4-gY-gTB" firstAttribute="trailing" secondItem="5PK-hG-Q4Y" secondAttribute="trailing" id="JTZ-j2-1Cp"/>
                             <constraint firstItem="Jpa-Pu-moa" firstAttribute="bottom" secondItem="5PK-hG-Q4Y" secondAttribute="bottom" id="VXT-Bo-mvS"/>
-                            <constraint firstItem="6Y9-6B-xKB" firstAttribute="leading" secondItem="5PK-hG-Q4Y" secondAttribute="leading" id="dIa-Gx-y4i"/>
                             <constraint firstItem="nk4-gY-gTB" firstAttribute="top" secondItem="FQi-Pe-68Q" secondAttribute="top" id="div-3c-bGk"/>
                             <constraint firstItem="ejt-fo-rI2" firstAttribute="trailing" secondItem="5PK-hG-Q4Y" secondAttribute="trailing" id="hbn-jM-brD"/>
                             <constraint firstItem="nk4-gY-gTB" firstAttribute="leading" secondItem="5PK-hG-Q4Y" secondAttribute="leading" id="lW8-Ds-dl5"/>
-                            <constraint firstItem="5PK-hG-Q4Y" firstAttribute="trailing" secondItem="6Y9-6B-xKB" secondAttribute="trailing" id="pen-aa-QoY"/>
                             <constraint firstItem="Jpa-Pu-moa" firstAttribute="trailing" secondItem="5PK-hG-Q4Y" secondAttribute="trailing" id="qx0-nh-rW6"/>
-                            <constraint firstItem="Jpa-Pu-moa" firstAttribute="top" secondItem="6Y9-6B-xKB" secondAttribute="bottom" id="ujo-fj-1VW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5PK-hG-Q4Y"/>
                     </view>
@@ -267,14 +246,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bannnerView" destination="6Y9-6B-xKB" id="7Gp-Vn-iX5"/>
                         <outlet property="listTableView" destination="ejt-fo-rI2" id="sgJ-uU-b8g"/>
                         <outlet property="toolBar" destination="Jpa-Pu-moa" id="vJ7-IG-1cu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udy-Z0-4BA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434.7826086956522" y="103.79464285714285"/>
+            <point key="canvasLocation" x="2193" y="105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="740-ZC-eaA">

@@ -8,9 +8,11 @@
 
 import UIKit
 import MessageUI
-import GoogleMobileAds
+import FBAudienceNetwork
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FBAdViewDelegate {
+    var bannerAdView: FBAdView!
+    
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd EEE"
@@ -19,7 +21,7 @@ class ViewController: UIViewController {
         return formatter
     }()
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    //@IBOutlet weak var bannerView: GADBannerView!
     
     @IBOutlet weak var listTableView: UITableView!
     
@@ -55,12 +57,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bannerAdView = FBAdView(placementID: "177353010371214_177353813704467", adSize: kFBAdSizeHeight50Banner, rootViewController: self)
+        bannerAdView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 80 , width: UIScreen.main.bounds.size.width, height: 50.0)
+        bannerAdView.delegate = self
+        bannerAdView.isHidden = false
+        self.view.addSubview(bannerAdView)
+        bannerAdView.loadAd()
         listTableView.backgroundColor = .clear
         CoreDataManager.shared.fetchMemo()
-        bannerView.adUnitID = "ca-app-pub-8233515273063706/1070720818"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
         
         NotificationCenter.default.addObserver(forName: .memoDidInsert, object: nil, queue: .main) { [weak self] _ in
             let index = IndexPath(row: 0, section: 0)
