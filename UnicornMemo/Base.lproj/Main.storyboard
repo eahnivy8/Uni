@@ -61,7 +61,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y8J-fW-3lV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="713"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="682"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="UV1-gS-dt0" detailTextLabel="s4f-ki-c1m" style="IBUITableViewCellStyleSubtitle" id="4IO-1T-zKe">
@@ -117,8 +117,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1um-1T-9T6"/>
-                            <constraint firstItem="8Bx-8E-E5Q" firstAttribute="top" secondItem="Y8J-fW-3lV" secondAttribute="bottom" constant="34" id="3Rg-3W-5T9"/>
-                            <constraint firstItem="Y8J-fW-3lV" firstAttribute="baseline" secondItem="g74-xu-ZPb" secondAttribute="firstBaseline" constant="144" id="Jsq-fq-IQf"/>
+                            <constraint firstItem="8Bx-8E-E5Q" firstAttribute="top" secondItem="Y8J-fW-3lV" secondAttribute="bottom" constant="65" id="3Rg-3W-5T9"/>
+                            <constraint firstItem="Y8J-fW-3lV" firstAttribute="baseline" secondItem="g74-xu-ZPb" secondAttribute="firstBaseline" constant="113" id="Jsq-fq-IQf"/>
                             <constraint firstItem="Y8J-fW-3lV" firstAttribute="width" secondItem="8Bx-8E-E5Q" secondAttribute="height" multiplier="125:30" constant="103.66" id="M36-eV-QOf"/>
                             <constraint firstItem="eXg-Nd-vT7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUD-Yk-aCg"/>
                             <constraint firstAttribute="bottom" secondItem="eXg-Nd-vT7" secondAttribute="bottom" id="PBh-UN-3Qm"/>
@@ -133,8 +133,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Memo List" id="TcP-Pk-Ld0"/>
+                    <navigationItem key="navigationItem" title="Memo List" id="TcP-Pk-Ld0">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="PyF-VG-iWv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Tn-uG-5aR">
+                                <rect key="frame" x="295" y="0.0" width="64" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="edit"/>
+                                <connections>
+                                    <action selector="editButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="seX-dV-AK3"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="composeButton" destination="g74-xu-ZPb" id="aNz-lM-qGe"/>
+                        <outlet property="editButton" destination="1Tn-uG-5aR" id="UWR-Oc-Zqq"/>
                         <outlet property="listTableView" destination="Y8J-fW-3lV" id="jnk-NJ-6Sm"/>
                     </connections>
                 </viewController>
@@ -185,7 +198,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xFa-ps-p1W">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xFa-ps-p1W">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -252,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udy-Z0-4BA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2193" y="105"/>
+            <point key="canvasLocation" x="1433" y="105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="740-ZC-eaA">
@@ -298,10 +311,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eSN-TN-h30"/>
+        <segue reference="IKk-8h-MLq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Pink" width="621" height="1104"/>
+        <image name="edit" width="64" height="64"/>
         <image name="unicorn_512" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
 </document>

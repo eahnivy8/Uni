@@ -1,10 +1,4 @@
-//
-//  DetailViewController.swift
-//  UnicornMemo
-//
-//  Created by Eddie Ahn on 2020/04/29.
-//  Copyright © 2020 Sang Wook Ahn. All rights reserved.
-//
+
 
 import UIKit
 import FBAudienceNetwork
@@ -60,8 +54,8 @@ class DetailViewController: UIViewController, FBAdViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-    bannerAdView = FBAdView(placementID: "177353010371214_177911173648731", adSize: kFBAdSizeHeight90Banner, rootViewController: self)
-    bannerAdView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 190 , width: UIScreen.main.bounds.size.width, height: 90.0)
+    bannerAdView = FBAdView(placementID: "177353010371214_177911173648731", adSize: kFBAdSizeHeight50Banner, rootViewController: self)
+    bannerAdView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 150 , width: UIScreen.main.bounds.size.width, height: 50.0)
     bannerAdView.delegate = self
     bannerAdView.isHidden = false
     self.view.addSubview(bannerAdView)

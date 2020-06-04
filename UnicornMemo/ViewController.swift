@@ -12,12 +12,26 @@ import FBAudienceNetwork
 
 class ViewController: UIViewController, FBAdViewDelegate {
     var bannerAdView: FBAdView!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var composeButton: UIButton!
+    var buttonActive = true
+    @IBAction func editButtonAction(_ sender: UIButton) {
+        
+        if buttonActive {
+            listTableView.setEditing(true, animated: true)
+            editButton.setImage(UIImage(named: "done.png"), for: .normal)
+            composeButton.isHidden = true
+        } else {
+            listTableView.setEditing(false, animated: true)
+            editButton.setImage(UIImage(named: "edit.png"), for: .normal)
+            composeButton.isHidden = false
+        }
+        buttonActive = !buttonActive
+    }
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd EEE"
-        //formatter.dateStyle = .short
-        //formatter.timeStyle = .short
         return formatter
     }()
     
@@ -93,6 +107,24 @@ extension ViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = dateFormatter.string(for: CoreDataManager.shared.list[indexPath.row].date)
         return cell
     }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+         return true
+     }
+    //원하는 위치에 drop하면 이위치에 드랍됨.
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = CoreDataManager.shared.list[sourceIndexPath.row]
+        CoreDataManager.shared.list.remove(at: sourceIndexPath.row)
+        CoreDataManager.shared.list.insert(movedObject, at: destinationIndexPath.row)
+        
+        var postionStart = 0
+        
+        for item in CoreDataManager.shared.list {
+            item.positionInTable = Int32(postionStart)
+            postionStart += 1
+        }
+        CoreDataManager.shared.saveContext()
+
+    }
 }
 
 extension ViewController: UITableViewDelegate {
@@ -116,9 +148,6 @@ extension ViewController: UITableViewDelegate {
             self?.delete(at: indexPath)
         }
         return [deleteAction, messageAction, emailAction]
-    }
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
     }
 }
 

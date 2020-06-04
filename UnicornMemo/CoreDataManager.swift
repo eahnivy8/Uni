@@ -26,19 +26,24 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
     func createMemo(content: String?) {
+        var positionStart: Int32 = 0
         if let content = content {
             let newEntity = MemoEntity(context: context)
             newEntity.content = content
             newEntity.date = Date()
-            saveContext()
+            newEntity.positionInTable = positionStart
             list.insert(newEntity, at: 0)
+            for item in list {
+                item.positionInTable = positionStart
+                positionStart += 1
+            }
+            saveContext()
         }
     }
     func fetchMemo() {
         let request: NSFetchRequest<MemoEntity> = MemoEntity.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: "date", ascending: false)
-        request.sortDescriptors = [sortByDate]
-        
+        let sortDescriptors = NSSortDescriptor(key: "positionInTable", ascending: true)
+        request.sortDescriptors = [sortDescriptors]
         do {
             let result = try context.fetch(request)
             list = result
