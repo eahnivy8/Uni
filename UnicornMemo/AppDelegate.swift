@@ -1,13 +1,8 @@
-//
-//  AppDelegate.swift
-//  UnicornMemo
-//
-//  Created by Eddie Ahn on 2020/04/27.
-//  Copyright © 2020 Sang Wook Ahn. All rights reserved.
-//
 
 import UIKit
-import FBAudienceNetwork
+import GoogleMobileAds
+import Firebase
+//import FBAudienceNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         CoreDataManager.shared.setup(modelName: "UnicornMemo")
         CoreDataManager.shared.fetchMemo()
+        //Google Admob
+        FirebaseApp.configure()
+        //DeviceInfo.createDeviceId()
+        //DeviceInfo.getMemberArray()
+         //Google Admob
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         //FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
         return true
     }
@@ -49,6 +50,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
 }
 

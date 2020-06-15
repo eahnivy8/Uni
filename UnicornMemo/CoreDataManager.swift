@@ -40,6 +40,23 @@ class CoreDataManager {
             saveContext()
         }
     }
+    func fetch(keyword: String? = nil) -> [MemoEntity] {
+         list = [MemoEntity]()
+         let fetchRequest: NSFetchRequest<MemoEntity> = MemoEntity.fetchRequest()
+         if let t = keyword, t.isEmpty == false {
+             fetchRequest.predicate = NSPredicate(format:"content CONTAINS[c] %@", t)
+         }
+         let sortDescriptors = NSSortDescriptor(key: "positionInTable", ascending: true)
+          fetchRequest.sortDescriptors = [sortDescriptors]
+          do {
+              let result = try context.fetch(fetchRequest)
+              list = result
+          } catch {
+              list.removeAll()
+              print(error)
+          }
+         return list
+    }
     func fetchMemo() {
         let request: NSFetchRequest<MemoEntity> = MemoEntity.fetchRequest()
         let sortDescriptors = NSSortDescriptor(key: "positionInTable", ascending: true)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>601850626643-gogsfmmknrkc5ntvdlouhb7aqttbn808.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.601850626643-gogsfmmknrkc5ntvdlouhb7aqttbn808</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCZ3fYIYFGu1vkaryiGQpIQ5m4nNFLxLKI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>601850626643</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sangwookahn.UnicornMemo</string>
+	<key>PROJECT_ID</key>
+	<string>unicorn-memo-project</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unicorn-memo-project.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:601850626643:ios:1edda3a0c2d537f8bcfca6</string>
+	<key>DATABASE_URL</key>
+	<string>https://unicorn-memo-project.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-8233515273063706~9680032090</string>
+</dict>
+</plist>

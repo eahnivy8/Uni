@@ -1,44 +1,74 @@
-//
-//  ViewController.swift
-//  UnicornMemo
-//
-//  Created by Eddie Ahn on 2020/04/27.
-//  Copyright © 2020 Sang Wook Ahn. All rights reserved.
-//
 
 import UIKit
 import MessageUI
-import FBAudienceNetwork
+import GoogleMobileAds
 
-class ViewController: UIViewController, FBAdViewDelegate {
-    var bannerAdView: FBAdView!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var composeButton: UIButton!
+class ViewController: UIViewController {
+    var animator: UIViewPropertyAnimator!
+    // var tapGestureRecognizer : UITapGestureRecognizer!
+    // @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+    //        let vcName = self.storyboard?.instantiateViewController(withIdentifier: "ComposeViewController")
+    //        vcName?.modalTransitionStyle = .coverVertical
+    //        self.present(vcName!, animated: true)
+    //    }
+    @IBOutlet weak var unicornImage: UIImageView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var bannerView: GADBannerView!
+    //var bannerAdView: FBAdView!
+    let editButton = UIButton(type: UIButton.ButtonType.custom)
+    //    @IBOutlet weak var composeButton: UIButton!
+    @IBOutlet weak var listTableView: UITableView!
+    
     var buttonActive = true
-    @IBAction func editButtonAction(_ sender: UIButton) {
-        
+    @objc func editButtonAction(_ sender: UIButton) {
         if buttonActive {
             listTableView.setEditing(true, animated: true)
             editButton.setImage(UIImage(named: "done.png"), for: .normal)
-            composeButton.isHidden = true
+            unicornImage.isHidden = true
         } else {
             listTableView.setEditing(false, animated: true)
-            editButton.setImage(UIImage(named: "edit.png"), for: .normal)
-            composeButton.isHidden = false
+            editButton.setImage(UIImage(named:
+                "edit.png"), for: .normal)
+            unicornImage.isHidden = false
         }
         buttonActive = !buttonActive
     }
-    
+    func setupBannerView() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50)
+        )
+        bannerView = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-8233515273063706/4373736656"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+    }
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+        ])
+    }
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd EEE"
         return formatter
     }()
-    
-    //@IBOutlet weak var bannerView: GADBannerView!
-    
-    @IBOutlet weak var listTableView: UITableView!
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell, let indexPath = listTableView.indexPath(for: cell) {
             if let detailVC = segue.destination as? DetailViewController {
@@ -69,14 +99,70 @@ class ViewController: UIViewController, FBAdViewDelegate {
         listTableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        unicornImage.isUserInteractionEnabled = true
+        guard let rootView = UIApplication.shared.keyWindow else { return }
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 5.0)})
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        // NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        unicornImage.isUserInteractionEnabled = true
+        guard let rootView = UIApplication.shared.keyWindow else { return }
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)})
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    @objc func applicationEnterInBackground() {
+        view.layer.removeAllAnimations()
+        print("back")
+    }
+    @objc func applicationEnterInForground() {
+        guard let rootView = UIApplication.shared.keyWindow else { return }
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)
+        }) { _ in
+            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)
+            }
+        print("front")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannerAdView = FBAdView(placementID: "177353010371214_177353813704467", adSize: kFBAdSizeHeight50Banner, rootViewController: self)
-        bannerAdView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 80 , width: UIScreen.main.bounds.size.width, height: 50.0)
-        bannerAdView.delegate = self
-        bannerAdView.isHidden = false
-        self.view.addSubview(bannerAdView)
-        bannerAdView.loadAd()
+        unicornImage.isUserInteractionEnabled = true
+        guard let rootView = UIApplication.shared.keyWindow else { return }
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 15.0)})
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+        setupBannerView()
+        
+        searchBar.delegate = self
+        searchBar.enablesReturnKeyAutomatically = false
+        
+        editButton.setImage(UIImage(named: "edit.png"), for: .normal)
+        editButton.imageEdgeInsets = .init(top: 43, left: 43, bottom: 43, right: 43)
+        editButton.addTarget(self, action: #selector(self.editButtonAction(_:)), for: .touchUpInside)
+        let rightBarButton = UIBarButtonItem(customView: editButton)
+        self.navigationItem.rightBarButtonItems = [rightBarButton]
+        
         listTableView.backgroundColor = .clear
         CoreDataManager.shared.fetchMemo()
         
@@ -87,7 +173,6 @@ class ViewController: UIViewController, FBAdViewDelegate {
         NotificationCenter.default.addObserver(forName: .memoDidDelete, object: nil, queue: .main) { [weak self] (_) in
             self?.listTableView.reloadData()
         }
-        
         NotificationCenter.default.addObserver(forName: .memoDidEdit, object: nil, queue: .main) { [weak self] (_) in
             self?.listTableView.reloadData()
         }
@@ -95,9 +180,10 @@ class ViewController: UIViewController, FBAdViewDelegate {
     }
 }
 
-
 extension ViewController: UITableViewDataSource {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         CoreDataManager.shared.list.count
     }
@@ -108,9 +194,9 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-         return true
-     }
-    //원하는 위치에 drop하면 이위치에 드랍됨.
+        return true
+    }
+    // Memo relocation function.
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedObject = CoreDataManager.shared.list[sourceIndexPath.row]
         CoreDataManager.shared.list.remove(at: sourceIndexPath.row)
@@ -123,7 +209,7 @@ extension ViewController: UITableViewDataSource {
             postionStart += 1
         }
         CoreDataManager.shared.saveContext()
-
+        
     }
 }
 
@@ -138,12 +224,14 @@ extension ViewController: UITableViewDelegate {
             }
         }
         emailAction.backgroundColor = .systemGreen
+        
         let messageAction = UITableViewRowAction(style: .normal, title: "Text") { [weak self] (action, indexPath) in
             if let data = CoreDataManager.shared.list[indexPath.row].content {
                 self?.sendMessage(with: data)
             }
         }
         messageAction.backgroundColor = .systemTeal
+        
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self](action, indexPath) in
             self?.delete(at: indexPath)
         }
@@ -163,4 +251,24 @@ extension ViewController: MFMessageComposeViewControllerDelegate {
     }
 }
 
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let keyword = searchBar.text
+        CoreDataManager.shared.list = CoreDataManager.shared.fetch(keyword: keyword)
+        self.listTableView.reloadData()
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        CoreDataManager.shared.fetchMemo()
+        self.searchBar.resignFirstResponder()
+        self.searchBar.text = nil
+        self.listTableView.reloadData()
+    }
+}
 
+extension ViewController: GADBannerViewDelegate {
+    //    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    //        bannerView.alpha = 0
+    //        UIView.animate(withDuration: 1) {
+    //            bannerView.alpha = 1
+}

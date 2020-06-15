@@ -48,6 +48,7 @@ class ComposeViewController: UIViewController {
         super.viewDidLoad()
         
         self.textView.becomeFirstResponder()
+        
         let saveButton = UIButton(type: UIButton.ButtonType.custom)
         saveButton.setImage(UIImage(named: "save.png"), for: .normal)
         saveButton.imageEdgeInsets = .init(top: 48, left: 48, bottom: 48, right: 48)

@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  UnicornMemo
-//
-//  Created by Eddie Ahn on 2020/04/27.
-//  Copyright © 2020 Sang Wook Ahn. All rights reserved.
-//
 
 import UIKit
 
@@ -12,7 +5,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
