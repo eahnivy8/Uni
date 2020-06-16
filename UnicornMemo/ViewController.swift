@@ -4,13 +4,7 @@ import MessageUI
 import GoogleMobileAds
 
 class ViewController: UIViewController {
-    var animator: UIViewPropertyAnimator!
-    // var tapGestureRecognizer : UITapGestureRecognizer!
-    // @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-    //        let vcName = self.storyboard?.instantiateViewController(withIdentifier: "ComposeViewController")
-    //        vcName?.modalTransitionStyle = .coverVertical
-    //        self.present(vcName!, animated: true)
-    //    }
+    
     @IBOutlet weak var unicornImage: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
     var bannerView: GADBannerView!
@@ -100,58 +94,62 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
-        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
                                                                 .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 5.0)})
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        // NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 30.0)})
+        print("viewwillappear")
     }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
-        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
-                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)})
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2, y: rootView.bounds.size.height - 150, width: 170, height: 170)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse,
+                                                                .allowUserInteraction, .allowAnimatedContent, .beginFromCurrentState], animations: {
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)}) { _ in
+                                                                        self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)
+                                                                        
+        }
+        print("viewdidappear")
     }
+    
     @objc func applicationEnterInBackground() {
-        view.layer.removeAllAnimations()
-        print("back")
+        //view.layer.removeAllAnimations()
+        unicornImage.layer.removeAllAnimations()
+        print("background")
     }
+    
     @objc func applicationEnterInForground() {
         guard let rootView = UIApplication.shared.keyWindow else { return }
-        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
-                                                                .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
+        UIView.animate(withDuration: 0.8, delay: 0.0, options: [.repeat,.autoreverse, .allowUserInteraction, .allowAnimatedContent, .beginFromCurrentState], animations: {
+            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 40.0)
+            //            self.unicornImage.layer.layoutIfNeeded()
         }) { _ in
-            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)
-            }
-        print("front")
+            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 45.0)
+            //          self.unicornImage.layer.layoutIfNeeded()
+        }
+        print("foreground")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
-        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 180, height: 180)
+        unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
                                                                 .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 15.0)})
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)})
         NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.didBecomeActiveNotification, object: nil)
         
+        print("viewdidload")
         setupBannerView()
         
         searchBar.delegate = self

@@ -86,7 +86,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate {
 //        self.view.addSubview(bannerAdView)
 //        bannerAdView.loadAd()
         
-        toolBar.barTintColor = .cyan
+        //toolBar.barTintColor = .systemPurple
         toolBar.alpha = 0.7
         listTableView.backgroundColor = .clear
         NotificationCenter.default.addObserver(forName: .memoDidEdit, object: nil, queue: .main) { (_) in

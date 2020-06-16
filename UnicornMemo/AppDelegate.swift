@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //let colorLiteral = #colorLiteral(red: 0.8302105069, green: 0.964060843, blue: 1, alpha: 1)
             let colorLiteral = #colorLiteral(red: 1, green: 0.70462358, blue: 0.8701322675, alpha: 1)
             coloredAppearance.backgroundColor = colorLiteral
-            coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.systemPurple]
-            coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.systemPurple]
+            let colorLiteral2 = #colorLiteral(red: 0.4316368699, green: 0.131993711, blue: 0.5856752992, alpha: 1)
+            coloredAppearance.titleTextAttributes = [.foregroundColor: colorLiteral2]
+            coloredAppearance.largeTitleTextAttributes = [.foregroundColor: colorLiteral2]
             UINavigationBar.appearance().standardAppearance = coloredAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         } else {
