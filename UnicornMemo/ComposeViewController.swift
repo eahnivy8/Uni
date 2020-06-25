@@ -1,16 +1,16 @@
-
-
 import UIKit
+import GoogleMobileAds
 
 extension NSNotification.Name {
     static let memoDidInsert = NSNotification.Name(rawValue: "MemoDidInsert")
-    static let memoDidEdit = NSNotification.Name(rawValue: "MemoDidEdit")
+    //    static let memoDidEdit = NSNotification.Name(rawValue: "MemoDidEdit")
 }
 
-class ComposeViewController: UIViewController {
-    var editTarget: MemoEntity?
+class ComposeViewController: UIViewController, GADBannerViewDelegate {
+    //var editTarget: MemoEntity?
+    let saveButton = UIButton(type: UIButton.ButtonType.custom)
     var originalMemoContent: String?
-    
+    var bannerView3: GADBannerView!
     @IBOutlet weak var textView: UITextView!
     @objc func saveMemo(_ sender: Any) {
         guard let text = textView.text, text.count > 0 else {
@@ -20,16 +20,18 @@ class ComposeViewController: UIViewController {
             }
             alert.addAction(ok)
             self.present(alert, animated: true)
-            return }
-        if let memo = editTarget {
-            memo.content = text
-            CoreDataManager.shared.saveContext()
-            NotificationCenter.default.post(name: .memoDidEdit, object: nil)
-        } else {
-            CoreDataManager.shared.createMemo(content: text)
-            NotificationCenter.default.post(name: .memoDidInsert, object: nil)
+            return
         }
-        self.cancelMemo(sender)
+        //        if let memo = editTarget {
+        //            memo.content = text
+        //            CoreDataManager.shared.saveContext()
+        //            NotificationCenter.default.post(name: .memoDidEdit, object: nil)
+        //        } else {
+        CoreDataManager.shared.createMemo(content: text)
+        NotificationCenter.default.post(name: .memoDidInsert, object: nil)
+        //            self.cancelMemo(sender)
+        textView.resignFirstResponder()
+        saveButton.isEnabled = false
     }
     @objc func cancelMemo(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -44,12 +46,69 @@ class ComposeViewController: UIViewController {
             NotificationCenter.default.removeObserver(token)
         }
     }
+    
+    func setupBannerView() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+        bannerView3 = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView3)
+        bannerView3.adUnitID = "ca-app-pub-8233515273063706/1290726984"
+        bannerView3.rootViewController = self
+        bannerView3.load(GADRequest())
+        bannerView3.delegate = self
+    }
+    func setupBannerViewOriginal() {
+           let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+           bannerView3 = GADBannerView(adSize: adSize)
+       }
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+        ])
+    }
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+        navigationController?.presentationController?.delegate = self
+       let save = UserDefaults.standard
+               if save.value(forKey: "Purchase") == nil {
+                 setupBannerView()
+           } else {
+               bannerView3.isHidden = true
+           }
+       }
+     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+         //addBannerViewToView(bannerView)
+         bannerView3.isHidden = false
+         print("adreceived")
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.textView.becomeFirstResponder()
+        //setupBannerView()
+        setupBannerViewOriginal()
+        bannerView3.isHidden = true
+        let nTitle = UILabel(frame: CGRect(x:0, y:0, width: 200, height: 40))
+        nTitle.textAlignment = .center
+        nTitle.font = .boldSystemFont(ofSize: 25)
+        nTitle.textColor = #colorLiteral(red: 0.5811578631, green: 0.2669279277, blue: 0.7445558906, alpha: 1)
+        nTitle.text = "New Memo"
+        self.navigationItem.titleView = nTitle
         
-        let saveButton = UIButton(type: UIButton.ButtonType.custom)
+        //saveButton = UIButton(type: UIButton.ButtonType.custom)
         saveButton.setImage(UIImage(named: "save.png"), for: .normal)
         saveButton.imageEdgeInsets = .init(top: 48, left: 48, bottom: 48, right: 48)
         saveButton.addTarget(self, action: #selector(saveMemo), for: .touchUpInside)
@@ -57,20 +116,20 @@ class ComposeViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [rightBarButton]
         
         let cancelButton = UIButton(type: .custom)
-        cancelButton.setImage(UIImage(named: "cancel.png"), for: .normal)
+        cancelButton.setImage(UIImage(named: "list.png"), for: .normal)
         cancelButton.imageEdgeInsets = .init(top: 48, left: 48, bottom: 48, right: 48)
         cancelButton.addTarget(self, action: #selector(cancelMemo), for: .touchUpInside)
         let leftBarButton = UIBarButtonItem(customView: cancelButton)
         self.navigationItem.leftBarButtonItems = [leftBarButton]
         
-        if let memo = editTarget {
-            self.navigationItem.title = "Edit Memo"
-            textView.text = memo.content
-            originalMemoContent = memo.content
-        } else {
-            self.navigationItem.title = "New Memo"
-            textView.text = ""
-        }
+        //if let memo = editTarget {
+        //            self.navigationItem.title = "Edit Memo"
+        //            textView.text = memo.content
+        //            originalMemoContent = memo.content
+        //} else {
+        self.navigationItem.title = "New Memo"
+        textView.text = ""
+        //}
         textView.delegate = self
         
         willShowToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main, using: { [weak self] (noti) in
@@ -102,10 +161,7 @@ class ComposeViewController: UIViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textView.resignFirstResponder()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.presentationController?.delegate = self
-    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.presentationController?.delegate = nil

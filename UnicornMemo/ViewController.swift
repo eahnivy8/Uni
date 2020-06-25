@@ -3,17 +3,25 @@ import UIKit
 import MessageUI
 import GoogleMobileAds
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var unicornImage: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var bannerView: GADBannerView!
-    //var bannerAdView: FBAdView!
+    var bannerView1: GADBannerView!
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView1.isHidden = false
+    }    //var bannerAdView: FBAdView!
     let editButton = UIButton(type: UIButton.ButtonType.custom)
+    let settingButton = UIButton(type: UIButton.ButtonType.custom)
     //    @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var listTableView: UITableView!
     
     var buttonActive = true
+    @objc func settingButtonAction(_ sender: UIBarButtonItem) {
+        guard let modalVC = storyboard?.instantiateViewController(withIdentifier: "ModalViewController") else { return }
+        modalVC.modalTransitionStyle = .crossDissolve
+        present(modalVC, animated: true, completion: nil)
+    }
     @objc func editButtonAction(_ sender: UIButton) {
         if buttonActive {
             listTableView.setEditing(true, animated: true)
@@ -30,13 +38,17 @@ class ViewController: UIViewController {
     func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50)
         )
-        bannerView = GADBannerView(adSize: adSize)
-        addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-8233515273063706/4373736656"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        bannerView1 = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView1)
+        bannerView1.adUnitID = "ca-app-pub-8233515273063706/4373736656"
+        bannerView1.rootViewController = self
+        bannerView1.load(GADRequest())
+        bannerView1.delegate = self
         
+    }
+    func setupBannerViewOriginal() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+        bannerView1 = GADBannerView(adSize: adSize)
     }
     func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,31 +104,45 @@ class ViewController: UIViewController {
         CoreDataManager.shared.list.remove(at: indexPath.row)
         listTableView.deleteRows(at: [indexPath], with: .automatic)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+        override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let save = UserDefaults.standard
+        if save.value(forKey: "Purchase") == nil {
+            setupBannerView()
+        } else {
+            bannerView1.isHidden = true
+        }
+        
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
         unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.repeat,.autoreverse, .curveLinear,
                                                                 .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 30.0)})
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 32.0)})
         print("viewwillappear")
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let save = UserDefaults.standard
+        if save.value(forKey: "Purchase") == nil {
+            setupBannerView()
+        } else {
+            bannerView1.isHidden = true
+        }
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
         unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2, y: rootView.bounds.size.height - 150, width: 170, height: 170)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse,
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.repeat, .autoreverse, .curveLinear,
                                                                 .allowUserInteraction, .allowAnimatedContent, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)}) { _ in
-                                                                        self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)
-                                                                        
-        }
-        print("viewdidappear")
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 10.0)})
+//        { _ in
+//                                                                        self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)
+//
+//        }
+//        print("viewdidappear")
     }
     
     @objc func applicationEnterInBackground() {
@@ -128,29 +154,35 @@ class ViewController: UIViewController {
     @objc func applicationEnterInForground() {
         guard let rootView = UIApplication.shared.keyWindow else { return }
         unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
-        UIView.animate(withDuration: 0.8, delay: 0.0, options: [.repeat,.autoreverse, .allowUserInteraction, .allowAnimatedContent, .beginFromCurrentState], animations: {
-            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 40.0)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.repeat,.autoreverse, .curveLinear, .allowUserInteraction, .allowAnimatedContent, .beginFromCurrentState], animations: {
+            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 27.0)
+            print("foreground")
             //            self.unicornImage.layer.layoutIfNeeded()
-        }) { _ in
-            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 45.0)
-            //          self.unicornImage.layer.layoutIfNeeded()
-        }
-        print("foreground")
+        })
+//        { _ in
+////            UIView.animate(withDuration: 0.8) {
+////                     self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 40.0)
+//            self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 45.0)
+//                      //self.unicornImage.layer.layoutIfNeeded()
+//        }
+//        print("foreground")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBannerViewOriginal()
+        bannerView1.isHidden = true
         unicornImage.isUserInteractionEnabled = true
         guard let rootView = UIApplication.shared.keyWindow else { return }
         unicornImage.bounds = CGRect(x: rootView.bounds.size.width/2 , y: rootView.bounds.size.height - 150, width: 170, height: 170)
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat,.autoreverse,
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.repeat,.autoreverse,.curveLinear,
                                                                 .allowUserInteraction, .beginFromCurrentState], animations: {
-                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 20.0)})
+                                                                    self.unicornImage.center  = CGPoint(x: self.unicornImage.bounds.origin.x, y: self.unicornImage.bounds.origin.y - 22.0)})
         NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInForground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationEnterInBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         print("viewdidload")
-        setupBannerView()
+        //setupBannerView()
         
         searchBar.delegate = self
         searchBar.enablesReturnKeyAutomatically = false
@@ -159,7 +191,13 @@ class ViewController: UIViewController {
         editButton.imageEdgeInsets = .init(top: 43, left: 43, bottom: 43, right: 43)
         editButton.addTarget(self, action: #selector(self.editButtonAction(_:)), for: .touchUpInside)
         let rightBarButton = UIBarButtonItem(customView: editButton)
+        settingButton.setImage(UIImage(named: "rainbow.png"), for: .normal)
+        settingButton.imageEdgeInsets = .init(top: 41, left: 41, bottom: 41, right: 41)
+        settingButton.addTarget(self, action: #selector(self.settingButtonAction(_:)), for: .touchUpInside)
+        let leftBarButton = UIBarButtonItem(customView: settingButton)
         self.navigationItem.rightBarButtonItems = [rightBarButton]
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        //self.navigationItem.leftBarButtonItem = rightBarButton2
         
         listTableView.backgroundColor = .clear
         CoreDataManager.shared.fetchMemo()
@@ -183,10 +221,11 @@ extension ViewController: UITableViewDataSource {
         return 55
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        CoreDataManager.shared.list.count
+        CoreDataManager.shared.list.count 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+       // if indexPath.row < CoreDataManager.shared.list.count {
         cell.textLabel?.text = CoreDataManager.shared.list[indexPath.row].content
         cell.detailTextLabel?.text = dateFormatter.string(for: CoreDataManager.shared.list[indexPath.row].date)
         return cell
@@ -264,9 +303,4 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension ViewController: GADBannerViewDelegate {
-    //    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-    //        bannerView.alpha = 0
-    //        UIView.animate(withDuration: 1) {
-    //            bannerView.alpha = 1
-}
+
