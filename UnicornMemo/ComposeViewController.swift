@@ -6,8 +6,9 @@ extension NSNotification.Name {
     //    static let memoDidEdit = NSNotification.Name(rawValue: "MemoDidEdit")
 }
 
-class ComposeViewController: UIViewController, GADBannerViewDelegate {
+class ComposeViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     //var editTarget: MemoEntity?
+    var interstitial1: GADInterstitial!
     let saveButton = UIButton(type: UIButton.ButtonType.custom)
     var originalMemoContent: String?
     var bannerView3: GADBannerView!
@@ -34,7 +35,21 @@ class ComposeViewController: UIViewController, GADBannerViewDelegate {
         saveButton.isEnabled = false
     }
     @objc func cancelMemo(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+            let save = UserDefaults.standard
+            if save.value(forKey: "Purchase") == nil {
+                if (self.interstitial1.isReady) {
+                    self.interstitial1.present(fromRootViewController: self)
+                    self.interstitial1 = self.createAd()
+                } else { self.dismiss(animated: true, completion: nil)}
+            } else {
+                self.interstitial1 = nil
+                self.dismiss(animated: true, completion: nil)
+            }
+    }
+    func createAd() -> GADInterstitial {
+        let inter = GADInterstitial(adUnitID: "ca-app-pub-8233515273063706/7401150820")
+        inter.load(GADRequest())
+        return inter
     }
     var willShowToken: NSObjectProtocol?
     var willHideToken: NSObjectProtocol?
@@ -99,6 +114,10 @@ class ComposeViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         self.textView.becomeFirstResponder()
         //setupBannerView()
+        interstitial1 = GADInterstitial(adUnitID: "ca-app-pub-8233515273063706/7401150820")
+        interstitial1.delegate = self
+        let request = GADRequest()
+        interstitial1.load(request)
         setupBannerViewOriginal()
         bannerView3.isHidden = true
         let nTitle = UILabel(frame: CGRect(x:0, y:0, width: 200, height: 40))
@@ -197,5 +216,16 @@ extension ComposeViewController: UIAdaptivePresentationControllerDelegate {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+//    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        print("dismiss")
+        self.dismiss(animated: true, completion: nil)
+    }
 }
+
 

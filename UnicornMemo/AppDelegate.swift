@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          //Google Admob
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         //FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
+        UITabBar.appearance().barTintColor = .orange
+        UITabBar.appearance().tintColor = .green
         return true
     }
     

@@ -3,6 +3,7 @@ import StoreKit
 import GoogleMobileAds
 
 class ModalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SKPaymentTransactionObserver, UIPopoverPresentationControllerDelegate, GADBannerViewDelegate {
+    
     var bannerView4: GADBannerView!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -204,7 +205,7 @@ class ModalViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 SKPaymentQueue.default().finishTransaction(transaction)
                 let save = UserDefaults.standard
                 save.set(true, forKey: "Purchase")
-                //bannerAdView3.isHidden = true
+                bannerView4.isHidden = true
                 break
             case .failed:
                 //payment failed
